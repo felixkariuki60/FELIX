@@ -1,0 +1,3385 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+AMILA SUITES AND LOUNGE — Production Website
+=============================================================
+DEPLOYMENT CHECKLIST:
+1. All image filenames use HYPHENS: hero-a.jpg, hero-b.jpg, etc.
+2. Place all photos in the same folder as this HTML file
+3. Update the EDIT HERE data block below the opening script tag
+4. Add your Google Maps API key where indicated in the map section
+5. Deploy: drag this file + images folder to netlify.com/drop
+6. Connect custom domain: Netlify > Settings > Domain Management
+7. Submit to Google Search Console after launch
+8. Set up Google Business Profile at business.google.com
+
+PHOTO SLOTS NEEDED:
+- hero-a.jpg: Grand lobby/exterior at golden hour
+- hero-b.jpg: Same space with guests, warm interaction
+- signature-room.jpg: Wide angle luxury room
+- room-detail.jpg: Crisp linens, bedside detail
+- pool-or-exterior.jpg: Pool, garden, or exterior
+- restaurant-dining.jpg: Hotel restaurant, warm light
+- rooms-background.jpg: Abstract luxury texture (section BG)
+- about-background.jpg: Hotel team at entrance (section BG)
+- gallery-background.jpg: Wide aerial/exterior shot (section BG)
+- meeting-room.jpg: Clean modern meeting room (optional)
+- spa-wellness.jpg: Calm spa room (optional)
+
+TO UPDATE CONTENT: Edit the JS data block marked "EDIT HERE" below.
+=============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amila Suites and Lounge — Nairobi's Hidden Gem | Eastern Bypass</title>
+<meta name="description" content="Amila Suites and Lounge on Eastern Bypass, Nairobi. A serene, bold escape with breathtaking sunset views, fine dining, and curated suites. Book your stay today.">
+<meta name="keywords" content="Amila Suites Nairobi, hotel Eastern Bypass Nairobi, suites Nairobi, lounge Nairobi, sunset views Nairobi hotel">
+<meta property="og:title" content="Amila Suites and Lounge — Nairobi">
+<meta property="og:description" content="A serene, bold escape in Nairobi. Stunning sunset views, curated suites, fine dining and a cool lounge bar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_KE">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://amilasuites.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Schema.org Hotel Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Amila Suites and Lounge",
+  "description": "A serene, bold hotel and lounge on Eastern Bypass, Nairobi with stunning sunset views.",
+  "url": "https://amilasuites.com",
+  "telephone": "+254722339965",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Eastern Bypass",
+    "addressLocality": "Nairobi",
+    "addressCountry": "KE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -1.2921,
+    "longitude": 36.8219
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.4",
+    "reviewCount": "8"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "author": {"@type": "Person", "name": "Esther Matendechere"},
+      "reviewBody": "The view is amazing you get to see the sun set and have a look at the sky while having your drink."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "author": {"@type": "Person", "name": "Purity Nyaboke"},
+      "reviewBody": "A well hidden gem that values customer privacy."
+    }
+  ]
+}
+</script>
+
+<style>
+/* ===================================
+   CSS VARIABLES & RESET
+   =================================== */
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E2C97E;
+  --gold-dark: #9A7A2E;
+  --deep: #0D0D0D;
+  --dark: #141414;
+  --mid: #1E1C19;
+  --surface: #242220;
+  --text: #F5F0E8;
+  --text-muted: #A89C8A;
+  --white: #FFFFFF;
+  --border: rgba(201,168,76,0.2);
+  --radius: 2px;
+  --transition: 0.4s ease;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--deep);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+/* ===================================
+   SCROLL REVEAL
+   =================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-card {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-card.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ===================================
+   STICKY NAV
+   =================================== */
+#main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
+}
+#main-nav.solid {
+  background: rgba(13,13,13,0.95);
+  backdrop-filter: blur(12px);
+  padding: 14px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.nav-logo span { font-weight: 300; color: var(--text); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-book-btn {
+  padding: 10px 24px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.nav-book-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--gold);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+.nav-book-btn:hover { color: var(--deep); }
+.nav-book-btn:hover::before { left: 0; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 2001;
+  padding: 8px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(13,13,13,0.97);
+  z-index: 2000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ===================================
+   HERO SECTIONS
+   =================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  will-change: transform;
+}
+.hero-bg-fallback {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a1408 0%, #2d2010 40%, #1a1408 100%);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.65) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out 0.3s forwards;
+}
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+  z-index: 20;
+  position: relative;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out 0.5s forwards;
+  padding-top: 0;
+}
+@media (min-width: 1024px) {
+  .hero-heading { padding-top: 0; font-size: clamp(72px, 7vw, 110px); }
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .hero-heading { padding-top: 0; font-size: 76px; }
+}
+.hero-heading em { font-style: italic; color: var(--gold-light); }
+.hero-tagline {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  margin-top: 20px;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out 0.9s forwards;
+}
+.hero-cta {
+  display: inline-block;
+  margin-top: 36px;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out 1.2s forwards;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, transparent, var(--gold));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+.scroll-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero 2 */
+.hero2-content {
+  max-width: 700px;
+  text-align: left;
+  padding: 0 48px;
+}
+.hero2-content .hero-eyebrow { text-align: left; }
+.hero2-content .hero-heading { font-size: clamp(44px, 6vw, 80px); text-align: left; }
+.hero2-content .hero-tagline { text-align: left; max-width: 480px; }
+
+/* ===================================
+   COOKIE CONSENT
+   =================================== */
+#cookie-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 9990;
+  flex-wrap: wrap;
+}
+#cookie-bar p { font-size: 12px; color: var(--text-muted); }
+#cookie-bar a { color: var(--gold); }
+.cookie-btn {
+  padding: 8px 20px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+/* ===================================
+   BOOKING BAR
+   =================================== */
+#booking-bar {
+  background: var(--dark);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 48px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.booking-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.booking-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.booking-field label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.booking-field input,
+.booking-field select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 4px 8px 4px 0;
+  outline: none;
+  min-width: 110px;
+  cursor: pointer;
+}
+.booking-field select option { background: var(--dark); }
+.booking-submit {
+  padding: 12px 28px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  min-height: 48px;
+  pointer-events: auto !important;
+}
+.booking-submit:hover { background: var(--gold-light); }
+.booking-bar-collapse {
+  display: none;
+  width: 100%;
+  padding: 12px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  min-height: 48px;
+  pointer-events: auto !important;
+}
+
+/* ===================================
+   TICKER
+   =================================== */
+#order-ticker {
+  background: rgba(201,168,76,0.06);
+  border-left: 3px solid var(--gold);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  overflow: hidden;
+  margin: 0 48px;
+}
+.ticker-msg {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+.ticker-msg.active { opacity: 1; }
+.ticker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-right: 10px;
+  flex-shrink: 0;
+  animation: tickerPulse 2s infinite;
+}
+@keyframes tickerPulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===================================
+   SECTION BASE
+   =================================== */
+section {
+  position: relative;
+  overflow: hidden;
+}
+.section-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.section-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+.section-content {
+  position: relative;
+  z-index: 2;
+}
+.section-pad { padding: 100px 48px; }
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text);
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-top: 16px;
+  line-height: 1.8;
+}
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+.btn-gold {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  min-height: 48px;
+  pointer-events: auto !important;
+}
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--gold-light);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+.btn-gold:hover { transform: translateY(-2px); }
+.btn-gold:hover::before { left: 0; }
+.btn-outline {
+  display: inline-block;
+  padding: 14px 36px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  cursor: pointer;
+  min-height: 48px;
+  pointer-events: auto !important;
+}
+.btn-outline:hover { background: var(--gold); color: var(--deep); }
+
+/* ===================================
+   COUNTDOWN
+   =================================== */
+#countdown-section {
+  background: var(--mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 48px;
+  text-align: center;
+}
+.countdown-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.countdown-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+}
+.countdown-unit {
+  text-align: center;
+}
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  min-width: 80px;
+}
+.countdown-lbl {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: block;
+}
+.countdown-sep {
+  font-family: var(--font-display);
+  font-size: 48px;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  padding-bottom: 16px;
+}
+#countdown-ended { display: none; font-size: 14px; color: var(--text-muted); }
+
+/* ===================================
+   MENU SECTION
+   =================================== */
+#menu-section {
+  background: var(--dark);
+  padding: 100px 0;
+}
+.menu-header {
+  padding: 0 48px 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.menu-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  overflow-x: auto;
+}
+.menu-tab {
+  padding: 12px 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+  background: none;
+  border-radius: 0;
+}
+.menu-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.menu-row-wrapper {
+  position: relative;
+  padding: 40px 0 20px;
+}
+.menu-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 48px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.menu-row::-webkit-scrollbar { height: 4px; }
+.menu-row::-webkit-scrollbar-track { background: transparent; }
+.menu-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.menu-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+.menu-card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+.menu-card-body { padding: 16px; }
+.menu-card-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.menu-card-price {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.menu-card-add {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-height: 36px;
+  pointer-events: auto !important;
+}
+.menu-card-add:hover { background: var(--gold); color: var(--deep); }
+.menu-row-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto !important;
+  transition: all 0.3s;
+}
+.menu-row-nav:hover { background: var(--gold); border-color: var(--gold); }
+.menu-row-nav:hover .chevron-line { background: var(--deep); }
+.menu-row-nav.prev { left: 8px; }
+.menu-row-nav.next { right: 8px; }
+.chevron-line {
+  display: block;
+  width: 8px;
+  height: 2px;
+  background: var(--text);
+  position: relative;
+}
+.chevron-line::before, .chevron-line::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  background: inherit;
+}
+.chevron-right::before { top: -4px; right: 0; transform: rotate(45deg); }
+.chevron-right::after { bottom: -4px; right: 0; transform: rotate(-45deg); }
+.chevron-left::before { top: -4px; left: 0; transform: rotate(-45deg); }
+.chevron-left::after { bottom: -4px; left: 0; transform: rotate(45deg); }
+
+/* ===================================
+   CART
+   =================================== */
+#cart-panel {
+  position: fixed;
+  right: -380px;
+  top: 0; bottom: 0;
+  width: 360px;
+  background: var(--dark);
+  border-left: 1px solid var(--border);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.4s ease;
+  pointer-events: auto;
+}
+#cart-panel.open { right: 0; }
+.cart-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+}
+.cart-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 20px;
+  pointer-events: auto !important;
+}
+.cart-items { flex: 1; overflow-y: auto; padding: 20px 24px; }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item-name { font-size: 14px; color: var(--text); }
+.cart-item-price { font-size: 13px; color: var(--gold); }
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cart-qty-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto !important;
+}
+.cart-empty { text-align: center; color: var(--text-muted); font-size: 14px; padding: 40px 0; }
+.cart-footer { padding: 20px 24px; border-top: 1px solid var(--border); }
+.cart-nudge {
+  font-size: 12px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 12px;
+  min-height: 16px;
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.cart-total-label { font-size: 13px; color: var(--text-muted); }
+.cart-total-amount { font-family: var(--font-display); font-size: 24px; color: var(--gold); font-weight: 600; }
+.cart-confirm {
+  width: 100%;
+  padding: 16px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  min-height: 48px;
+  pointer-events: auto !important;
+  transition: background 0.3s;
+}
+.cart-confirm:hover { background: var(--gold-light); }
+.cart-btn {
+  position: fixed;
+  bottom: 160px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  background: var(--dark);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9997;
+  pointer-events: auto !important;
+  color: var(--gold);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+.cart-btn:hover { background: var(--gold); color: var(--deep); }
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: var(--gold);
+  color: var(--deep);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cart-count.show { opacity: 1; }
+
+/* ===================================
+   ROOMS SECTION
+   =================================== */
+#rooms-section {
+  padding: 100px 48px;
+  background: var(--mid);
+}
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 60px;
+}
+.room-card {
+  position: relative;
+  overflow: hidden;
+  height: 440px;
+  cursor: pointer;
+}
+.room-card:first-child {
+  grid-row: span 2;
+  height: auto;
+}
+.room-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.room-card:hover .room-card-img { transform: scale(1.04); }
+.room-card-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+  padding: 32px 28px;
+  pointer-events: none;
+}
+.room-card-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.room-card-price {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.room-card-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 4px 12px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ===================================
+   SCROLLYTELLING
+   =================================== */
+#story-section {
+  display: flex;
+  min-height: 300vh;
+  background: var(--deep);
+}
+.story-sticky {
+  position: sticky;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.story-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.story-img.active { opacity: 1; }
+.story-img-fallback {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a1408, #2d2010);
+}
+.story-overlay-gradient {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent 60%, var(--deep) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+.story-right {
+  width: 50%;
+  padding: 120px 60px 120px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.story-paragraph {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+.story-paragraph.active { opacity: 1; }
+.story-paragraph:last-child { border-bottom: none; }
+.story-num {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+.story-p-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.story-p-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+/* ===================================
+   SERVICE SELECTOR (IMMERSIVE)
+   =================================== */
+#services-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.services-bg-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+.services-bg-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.services-bg-img.active { opacity: 1; }
+.services-bg-default {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a1408 0%, #0d0d0d 100%);
+}
+.services-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.52);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+.services-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  padding: 100px 80px;
+  gap: 80px;
+  align-items: center;
+}
+.services-left { flex: 1; }
+.services-right { flex: 1; }
+.service-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.service-item:first-child { border-top: 1px solid rgba(201,168,76,0.15); }
+.service-item:hover, .service-item.active {
+  padding-left: 20px;
+  border-bottom-color: var(--gold);
+}
+.service-item-num { font-size: 10px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 4px; }
+.service-item-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.3s;
+}
+.service-item:hover .service-item-name,
+.service-item.active .service-item-name { color: var(--gold-light); }
+.service-item-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.service-item.active .service-item-desc { max-height: 80px; opacity: 1; }
+.services-mobile-img {
+  display: none;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  margin-top: 16px;
+}
+
+/* ===================================
+   GALLERY (CINEMATIC SLIDESHOW)
+   =================================== */
+#gallery-section {
+  position: relative;
+}
+.gallery-track {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+.gallery-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+.gallery-slide.active { opacity: 1; }
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-slide-fallback {
+  width: 100%; height: 100%;
+  background: var(--mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+.gallery-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  background: rgba(13,13,13,0.6);
+  border: 1px solid rgba(201,168,76,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.3s;
+  min-width: 44px;
+  min-height: 44px;
+}
+.gallery-arrow:hover { background: var(--gold); border-color: var(--gold); }
+.gallery-arrow.prev { left: 24px; }
+.gallery-arrow.next { right: 24px; }
+.gallery-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.gallery-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.3s;
+}
+.gallery-dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 3px;
+}
+.gallery-caption {
+  position: absolute;
+  bottom: 60px;
+  left: 48px;
+  z-index: 10;
+  pointer-events: none;
+}
+.gallery-caption-text {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--white);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+/* ===================================
+   REVIEWS
+   =================================== */
+#reviews-section {
+  background: var(--mid);
+  padding: 100px 48px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+.review-card {
+  background: var(--surface);
+  padding: 36px;
+  border-left: 3px solid var(--gold);
+  transition: transform 0.3s;
+}
+.review-card:hover { transform: translateY(-4px); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+.review-text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.review-author { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.review-role { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.review-rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.rating-big {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.rating-info { flex: 1; }
+.rating-label { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.rating-stars { font-size: 20px; color: var(--gold); letter-spacing: 4px; }
+.rating-count { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+/* ===================================
+   ABOUT SECTION
+   =================================== */
+#about-section { padding: 120px 80px; }
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-img-col {
+  position: relative;
+  height: 560px;
+}
+.about-main-img {
+  width: calc(100% - 40px);
+  height: 100%;
+  object-fit: cover;
+}
+.about-accent-box {
+  position: absolute;
+  bottom: -24px;
+  right: 0;
+  width: 160px;
+  height: 160px;
+  background: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.about-accent-num {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--deep);
+  line-height: 1;
+}
+.about-accent-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--deep);
+  margin-top: 6px;
+}
+.about-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+.about-stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.about-stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===================================
+   MAP SECTION
+   =================================== */
+#map-section { background: var(--dark); padding: 80px 48px; }
+.map-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+.map-info { }
+.map-info-item { margin-bottom: 28px; }
+.map-info-label { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.map-info-val { font-size: 15px; color: var(--text); font-weight: 300; }
+.map-info-val a { color: var(--gold); }
+.map-container {
+  height: 400px;
+  background: var(--mid);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+/* Google Maps API key note:
+   Replace YOUR_API_KEY in the iframe src below.
+   Also set coordinates: -1.2921, 36.8219 (adjust to exact location)
+*/
+.map-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(60%) invert(10%) sepia(20%) saturate(80%) contrast(90%);
+}
+.map-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.map-placeholder-icon { font-size: 40px; color: var(--gold); }
+.map-placeholder-text { font-size: 13px; color: var(--text-muted); text-align: center; }
+.map-placeholder-link {
+  padding: 10px 24px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+footer {
+  background: #070707;
+  padding: 80px 80px 40px;
+  border-top: 1px solid var(--border);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.footer-tagline { font-size: 14px; font-weight: 300; color: var(--text-muted); max-width: 280px; line-height: 1.8; }
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy { font-size: 11px; color: var(--text-muted); }
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { font-size: 11px; color: var(--text-muted); transition: color 0.3s; }
+.footer-legal a:hover { color: var(--gold); }
+
+/* ===================================
+   FLOATING BUTTONS
+   =================================== */
+#whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  min-width: 52px;
+  min-height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: auto !important;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
+#whatsapp-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+#whatsapp-btn svg { width: 28px; height: 28px; fill: white; }
+@keyframes whatsappPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 32px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+}
+#whatsapp-btn { animation: whatsappPulse 4s ease-in-out infinite; }
+#whatsapp-btn:hover { animation: none; }
+
+/* ===================================
+   AI RECEPTIONIST
+   =================================== */
+#ai-receptionist-btn {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: auto !important;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+}
+#ai-receptionist-btn:hover { transform: scale(1.08); }
+#ai-receptionist-btn svg { width: 24px; height: 24px; fill: var(--deep); }
+
+#ai-panel {
+  position: fixed;
+  bottom: 160px;
+  right: 24px;
+  width: 360px;
+  max-height: 480px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: none;
+  flex-direction: column;
+  z-index: 9998;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  pointer-events: auto;
+  overflow: hidden;
+}
+#ai-panel.open { display: flex; }
+.ai-header {
+  padding: 16px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--deep);
+  flex-shrink: 0;
+}
+.ai-info { flex: 1; }
+.ai-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.ai-status { font-size: 11px; color: #25D366; }
+.ai-lang-toggle { display: flex; gap: 4px; }
+.ai-lang-btn {
+  padding: 3px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 20px;
+  pointer-events: auto !important;
+  transition: all 0.3s;
+}
+.ai-lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+.ai-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 18px;
+  pointer-events: auto !important;
+  background: none;
+  border: none;
+}
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ai-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.ai-msg.bot {
+  background: var(--surface);
+  color: var(--text);
+  border-left: 2px solid var(--gold);
+  align-self: flex-start;
+}
+.ai-msg.user {
+  background: var(--gold);
+  color: var(--deep);
+  align-self: flex-end;
+  font-weight: 500;
+}
+.ai-quick-replies {
+  padding: 8px 20px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ai-quick {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 20px;
+  pointer-events: auto !important;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.ai-quick:hover { border-color: var(--gold); color: var(--gold); }
+.ai-input-row {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.ai-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+  border-radius: 2px;
+}
+.ai-input::placeholder { color: var(--text-muted); }
+.ai-send {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto !important;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.ai-send svg { width: 16px; height: 16px; fill: var(--deep); }
+
+/* ===================================
+   BOOKING MODAL
+   =================================== */
+#booking-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 9995;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#booking-modal.open { display: flex; }
+.modal-inner {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  max-width: 560px;
+  width: 100%;
+  padding: 48px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 24px;
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.modal-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus { border-color: var(--gold); }
+.form-textarea { resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-honeypot { display: none !important; }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  min-height: 52px;
+  pointer-events: auto !important;
+  transition: background 0.3s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--gold-light); }
+.form-success {
+  text-align: center;
+  padding: 24px;
+  display: none;
+}
+.form-success-icon { font-size: 40px; color: var(--gold); margin-bottom: 12px; }
+.form-success-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.form-success-text { font-size: 13px; color: var(--text-muted); }
+
+/* ===================================
+   SPECIALS SECTION
+   =================================== */
+#specials-section { background: var(--deep); padding: 80px 48px; }
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 48px;
+}
+.special-card {
+  background: var(--surface);
+  padding: 36px;
+  border-top: 3px solid transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.special-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+.special-card:hover::after { width: 100%; }
+.special-card:hover { transform: translateY(-4px); }
+.special-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.special-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.special-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+.special-price { font-size: 22px; color: var(--gold); font-family: var(--font-display); font-weight: 600; }
+.special-original { font-size: 14px; color: var(--text-muted); text-decoration: line-through; margin-left: 8px; }
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  #main-nav { padding: 16px 24px; }
+  #main-nav.solid { padding: 12px 24px; }
+  .section-pad { padding: 80px 24px; }
+  #booking-bar { padding: 16px 24px; }
+  .booking-bar-inner { display: none; }
+  .booking-submit { display: none; }
+  .booking-bar-collapse { display: block; }
+  #order-ticker { margin: 0 24px; }
+  .rooms-grid { grid-template-columns: 1fr; }
+  .room-card:first-child { grid-row: span 1; }
+  .room-card { height: 280px; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 2px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .specials-grid { grid-template-columns: 1fr; gap: 2px; }
+  .about-inner { grid-template-columns: 1fr; gap: 48px; }
+  .about-img-col { height: 320px; }
+  .map-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  #story-section { flex-direction: column; min-height: auto; }
+  .story-sticky { display: none; }
+  .story-right { width: 100%; padding: 60px 24px; }
+  .story-paragraph { opacity: 1; }
+  .services-content { flex-direction: column; padding: 60px 24px; gap: 40px; }
+  .services-mobile-img { display: block; }
+  .gallery-track { height: 320px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  footer { padding: 60px 24px 32px; }
+  #ai-panel { width: calc(100vw - 48px); right: 24px; bottom: 160px; }
+  .hero2-content { padding: 0 24px; }
+  .modal-inner { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  #countdown-section { padding: 40px 24px; }
+  .countdown-num { font-size: 40px; }
+  .about-stats { flex-direction: column; gap: 24px; }
+  .rating-big { font-size: 60px; }
+}
+
+@media (max-width: 480px) {
+  .hero-heading { font-size: 40px !important; }
+  .hero2-content .hero-heading { font-size: 36px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======= NAVIGATION ======= -->
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">Amila <span>Suites & Lounge</span></div>
+  <ul class="nav-links" role="list">
+    <li><a href="#rooms-section">Suites</a></li>
+    <li><a href="#menu-section">Dining</a></li>
+    <li><a href="#services-section">Amenities</a></li>
+    <li><a href="#about-section">Our Story</a></li>
+    <li><a href="#map-section">Find Us</a></li>
+    <li><a href="#" class="nav-book-btn" id="nav-book-trigger">Book Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <a href="#rooms-section" onclick="closeMobileMenu()">Suites</a>
+  <a href="#menu-section" onclick="closeMobileMenu()">Dining</a>
+  <a href="#services-section" onclick="closeMobileMenu()">Amenities</a>
+  <a href="#about-section" onclick="closeMobileMenu()">Our Story</a>
+  <a href="#map-section" onclick="closeMobileMenu()">Find Us</a>
+  <a href="#" class="btn-gold" onclick="closeMobileMenu(); openBookingModal()">Book Now</a>
+</div>
+
+<!-- ======= HERO A ======= -->
+<section class="hero-section" id="hero-a" aria-label="Hero">
+  <img class="hero-bg" src="hero-a.jpg" alt="Amila Suites and Lounge — grand lobby at golden hour" loading="eager">
+  <div class="hero-bg-fallback" aria-hidden="true">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 30% 60%, rgba(201,168,76,0.15) 0%, transparent 70%), linear-gradient(135deg,#0f0c06 0%,#1a1408 40%,#0d0d0d 100%);"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(0deg,#0d0d0d,transparent);"></div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content" id="hero-a-content">
+    <p class="hero-eyebrow">Eastern Bypass, Nairobi</p>
+    <h1 class="hero-heading">Amila <em>Suites</em><br>&amp; Lounge</h1>
+    <p class="hero-tagline">Where the Nairobi skyline meets golden-hour serenity. A hidden gem that values your privacy.</p>
+    <a href="#" class="hero-cta" onclick="openBookingModal(); return false;">Reserve Your Suite</a>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Discover</span>
+  </div>
+</section>
+
+<!-- ======= HERO B ======= -->
+<section class="hero-section" id="hero-b" aria-label="Experience at Amila">
+  <img class="hero-bg" src="hero-b.jpg" alt="Guests enjoying Amila Suites at sunset" loading="lazy">
+  <div class="hero-bg-fallback" aria-hidden="true">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 70% 40%, rgba(201,168,76,0.18) 0%, transparent 60%), linear-gradient(220deg,#1a1005 0%,#0d0d0d 50%,#0a0a0a 100%);"></div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content hero2-content">
+    <span class="hero-eyebrow">The Amila Experience</span>
+    <h1 class="hero-heading">"The view is<br><em>amazing."</em></h1>
+    <p class="hero-tagline">Catch the sunset over Nairobi's skyline, cocktail in hand. Our guests come for the rooms. They return for the feeling.</p>
+    <a href="#reviews-section" class="btn-outline" style="margin-top:32px;">Read Guest Stories</a>
+  </div>
+</section>
+
+<!-- ======= STICKY BOOKING BAR ======= -->
+<div id="booking-bar" role="complementary" aria-label="Quick booking">
+  <div class="booking-bar-inner">
+    <div class="booking-field">
+      <label for="checkin">Check-in</label>
+      <input type="date" id="checkin" name="checkin">
+    </div>
+    <div class="booking-field">
+      <label for="checkout">Check-out</label>
+      <input type="date" id="checkout" name="checkout">
+    </div>
+    <div class="booking-field">
+      <label for="guests">Guests</label>
+      <select id="guests" name="guests">
+        <option>1 Guest</option>
+        <option>2 Guests</option>
+        <option>3 Guests</option>
+        <option>4 Guests</option>
+        <option>5+ Guests</option>
+      </select>
+    </div>
+    <div class="booking-field">
+      <label for="room-type">Room Type</label>
+      <select id="room-type" name="room-type">
+        <option>Deluxe Suite</option>
+        <option>Executive Suite</option>
+        <option>Presidential Suite</option>
+        <option>Standard Room</option>
+      </select>
+    </div>
+    <button class="booking-submit" onclick="submitQuickBooking()">Check Availability</button>
+  </div>
+  <button class="booking-bar-collapse" onclick="openBookingModal()">Book Your Stay — Check Availability</button>
+</div>
+
+<!-- ======= ORDER TICKER ======= -->
+<div id="order-ticker" role="status" aria-live="polite">
+  <div class="ticker-dot" aria-hidden="true"></div>
+  <span class="ticker-msg active" id="ticker-text">Full Breakfast ordered — 2 minutes ago</span>
+</div>
+
+<!-- ======= COUNTDOWN ======= -->
+<section id="countdown-section" aria-label="Daily special offer countdown">
+  <div class="countdown-label">Today's Special — Offer Ends At Midnight</div>
+  <div class="countdown-title">Sunset Cocktail Happy Hour — 2-for-1 on Selected Drinks</div>
+  <div class="countdown-timer" role="timer" aria-label="Time remaining">
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-hours">00</span>
+      <span class="countdown-lbl">Hours</span>
+    </div>
+    <div class="countdown-sep" aria-hidden="true">:</div>
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-mins">00</span>
+      <span class="countdown-lbl">Minutes</span>
+    </div>
+    <div class="countdown-sep" aria-hidden="true">:</div>
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-secs">00</span>
+      <span class="countdown-lbl">Seconds</span>
+    </div>
+  </div>
+  <p id="countdown-ended" style="display:none;font-size:14px;color:var(--text-muted);margin-top:12px;">Offer has ended — check back tomorrow.</p>
+</section>
+
+<!-- ======= SPECIALS ======= -->
+<section id="specials-section">
+  <div class="section-content">
+    <div class="reveal">
+      <span class="section-eyebrow">Curated Experiences</span>
+      <h2 class="section-title">Today's <em>Specials</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Exclusive offers — available today only. Do not miss this.</p>
+    </div>
+    <div class="specials-grid">
+      <div class="special-card reveal-card">
+        <span class="special-tag">Limited Today</span>
+        <div class="special-name">Sunset Suite Package</div>
+        <div class="special-desc">One night in our Deluxe Suite with breakfast for two and a welcome cocktail at our lounge with views over Nairobi.</div>
+        <div>
+          <span class="special-price">KES 12,500</span>
+          <span class="special-original">KES 18,000</span>
+        </div>
+      </div>
+      <div class="special-card reveal-card" style="transition-delay:0.1s">
+        <span class="special-tag">3 Tables Left Tonight</span>
+        <div class="special-name">Dinner for Two</div>
+        <div class="special-desc">A candlelit dinner with a curated 3-course menu. Fresh, locally sourced ingredients. Served daily since 2021.</div>
+        <div>
+          <span class="special-price">KES 4,800</span>
+          <span class="special-original">KES 6,500</span>
+        </div>
+      </div>
+      <div class="special-card reveal-card" style="transition-delay:0.2s">
+        <span class="special-tag">12 Ordered Today</span>
+        <div class="special-name">Full Breakfast Bundle</div>
+        <div class="special-desc">Our legendary Full Breakfast with a fresh juice, artisan coffee, and a newspaper. The perfect Nairobi morning.</div>
+        <div>
+          <span class="special-price">KES 1,400</span>
+          <span class="special-original">KES 1,800</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= MENU ======= -->
+<section id="menu-section">
+  <div class="menu-header">
+    <div class="reveal">
+      <span class="section-eyebrow">Our Kitchen & Bar</span>
+      <h2 class="section-title">The <em>Menu</em></h2>
+      <div class="divider"></div>
+    </div>
+    <button class="btn-gold" id="cart-open-btn" aria-label="Open order cart" onclick="toggleCart()" style="z-index:10;position:relative;pointer-events:auto!important;">
+      Your Order (<span id="cart-count-header">0</span>)
+    </button>
+  </div>
+
+  <div class="menu-tabs" role="tablist" id="menu-tabs"></div>
+  <div id="menu-categories-wrapper"></div>
+</section>
+
+<!-- ======= ROOMS ======= -->
+<section id="rooms-section">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:var(--mid);"></div>
+  <div class="section-content" style="padding:100px 48px;">
+    <div class="reveal" style="margin-bottom:60px;">
+      <span class="section-eyebrow">Accommodation</span>
+      <h2 class="section-title">Our <em>Suites</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Each suite is a sanctuary — designed for calm, built for the bold traveller.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card reveal-card">
+        <img class="room-card-img" src="signature-room.jpg" alt="Presidential Suite at Amila Suites" loading="lazy">
+        <div class="room-card-overlay">
+          <span class="room-card-tag">Most Popular</span>
+          <div class="room-card-name">Presidential Suite</div>
+          <div class="room-card-price">From KES 18,000 / night</div>
+        </div>
+        <span class="room-card-tag" style="position:absolute;top:20px;left:20px;">Most Booked</span>
+      </div>
+      <div class="room-card reveal-card" style="transition-delay:0.1s">
+        <img class="room-card-img" src="room-detail.jpg" alt="Executive Suite detail at Amila Suites" loading="lazy">
+        <div class="room-card-overlay">
+          <div class="room-card-name">Executive Suite</div>
+          <div class="room-card-price">From KES 12,000 / night</div>
+        </div>
+      </div>
+      <div class="room-card reveal-card" style="transition-delay:0.2s">
+        <img class="room-card-img" src="pool-or-exterior.jpg" alt="Amila Suites exterior and grounds" loading="lazy">
+        <div class="room-card-overlay">
+          <div class="room-card-name">Deluxe Room</div>
+          <div class="room-card-price">From KES 7,500 / night</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;" class="reveal">
+      <p style="font-size:13px;color:var(--gold);margin-bottom:16px;">Only 3 suites available tonight</p>
+      <button class="btn-gold" onclick="openBookingModal()" style="pointer-events:auto!important;">Reserve Your Suite</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======= SCROLLYTELLING ======= -->
+<section id="story-section" aria-label="Our story">
+  <div class="story-sticky" aria-hidden="true">
+    <div class="story-img-fallback"></div>
+    <div class="story-img active" id="story-img-0" style="background-image:url('restaurant-dining.jpg');background-size:cover;background-position:center;"></div>
+    <div class="story-img" id="story-img-1" style="background-image:url('about-background.jpg');background-size:cover;background-position:center;"></div>
+    <div class="story-img" id="story-img-2" style="background-image:url('gallery-background.jpg');background-size:cover;background-position:center;"></div>
+    <div class="story-overlay-gradient"></div>
+  </div>
+  <div class="story-right">
+    <div class="story-paragraph" data-img="0">
+      <span class="story-num">01</span>
+      <div class="story-p-title">A Hidden Gem on the Eastern Bypass</div>
+      <p class="story-p-text">Tucked away off Eastern Bypass, Amila Suites and Lounge was built with one principle: that a hotel should feel like a reward. Not a transaction. From the first step inside, the outside world softens.</p>
+    </div>
+    <div class="story-paragraph" data-img="1">
+      <span class="story-num">02</span>
+      <div class="story-p-title">Your Privacy Is Sacred Here</div>
+      <p class="story-p-text">Our guests trust us with their most important moments — anniversaries, retreats, and quiet mornings that matter. We have built our reputation on discretion. What happens at Amila, stays at Amila.</p>
+    </div>
+    <div class="story-paragraph" data-img="2">
+      <span class="story-num">03</span>
+      <div class="story-p-title">The Sunset That Stops Time</div>
+      <p class="story-p-text">Every evening, the Nairobi skyline turns to copper and amber. Our lounge is positioned to catch every second of it. Your drink gets colder. The conversation gets warmer. The city below does its thing. You get to just breathe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= IMMERSIVE SERVICE SELECTOR ======= -->
+<section id="services-section" aria-label="Hotel amenities">
+  <div class="services-bg-container">
+    <div class="services-bg-default" aria-hidden="true"></div>
+    <div class="services-bg-img active" id="svc-bg-0" style="background-image:url('restaurant-dining.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+    <div class="services-bg-img" id="svc-bg-1" style="background-image:url('signature-room.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+    <div class="services-bg-img" id="svc-bg-2" style="background-image:url('restaurant-dining.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+    <div class="services-bg-img" id="svc-bg-3" style="background-image:url('meeting-room.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+    <div class="services-bg-img" id="svc-bg-4" style="background-image:url('pool-or-exterior.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+  </div>
+  <div class="services-overlay" id="services-overlay"></div>
+  <div class="services-content section-content">
+    <div class="services-left">
+      <span class="section-eyebrow">What We Offer</span>
+      <h2 class="section-title" style="color:var(--white);">Crafted <em>Amenities</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Hover to explore each experience. Every detail is intentional.</p>
+    </div>
+    <div class="services-right">
+      <div class="service-item active" data-svc="0" onclick="selectService(0)" onmouseover="selectService(0)">
+        <div class="service-item-num">01</div>
+        <div class="service-item-name">Sunset Lounge & Bar</div>
+        <div class="service-item-desc">Nairobi's most beautiful golden hour. Craft cocktails, cold beers, and premium spirits served as the city glows beneath you.</div>
+      </div>
+      <div class="service-item" data-svc="1" onclick="selectService(1)" onmouseover="selectService(1)">
+        <div class="service-item-num">02</div>
+        <div class="service-item-name">Curated Suites</div>
+        <div class="service-item-desc">Every room is a private retreat. Crisp linens, in-suite amenities, and views that make waking up a pleasure.</div>
+      </div>
+      <div class="service-item" data-svc="2" onclick="selectService(2)" onmouseover="selectService(2)">
+        <div class="service-item-num">03</div>
+        <div class="service-item-name">Restaurant & Dining</div>
+        <div class="service-item-desc">From full Kenyan breakfasts to evening steaks and fresh pastas. All-day dining with a kitchen that takes pride in every plate.</div>
+      </div>
+      <div class="service-item" data-svc="3" onclick="selectService(3)" onmouseover="selectService(3)">
+        <div class="service-item-num">04</div>
+        <div class="service-item-name">Events & Meetings</div>
+        <div class="service-item-desc">Private events, board meetings, and celebrations. Let us handle every detail so you can be fully present.</div>
+      </div>
+      <div class="service-item" data-svc="4" onclick="selectService(4)" onmouseover="selectService(4)">
+        <div class="service-item-num">05</div>
+        <div class="service-item-name">Pool Table & Games</div>
+        <div class="service-item-desc">Unwind after a long day with friends. Pool table and entertainment available for guests.</div>
+      </div>
+      <div style="margin-top:32px;">
+        <button class="btn-gold" onclick="openBookingModal()" style="pointer-events:auto!important;">Book an Experience</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= GALLERY ======= -->
+<section id="gallery-section" aria-label="Photo gallery">
+  <div class="gallery-track" id="gallery-track">
+    <div class="gallery-slide active" id="slide-0">
+      <img src="gallery-background.jpg" alt="Amila Suites — a place where Nairobi breathes" loading="lazy">
+    </div>
+    <div class="gallery-slide" id="slide-1">
+      <img src="restaurant-dining.jpg" alt="Amila Suites restaurant and dining" loading="lazy">
+    </div>
+    <div class="gallery-slide" id="slide-2">
+      <img src="pool-or-exterior.jpg" alt="Amila Suites grounds and exterior" loading="lazy">
+    </div>
+    <div class="gallery-slide" id="slide-3">
+      <img src="signature-room.jpg" alt="Amila Suites signature room" loading="lazy">
+    </div>
+    <div class="gallery-overlay" aria-hidden="true"></div>
+    <button class="gallery-arrow prev" id="gallery-prev" aria-label="Previous photo">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="pointer-events:none">
+        <path d="M11 4L6 9L11 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="gallery-arrow next" id="gallery-next" aria-label="Next photo">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="pointer-events:none">
+        <path d="M7 4L12 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="gallery-dots" id="gallery-dots" role="tablist" aria-label="Gallery navigation"></div>
+    <div class="gallery-caption">
+      <div class="gallery-caption-text" id="gallery-caption-text">A place where Nairobi breathes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= REVIEWS ======= -->
+<section id="reviews-section">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:var(--mid);"></div>
+  <div class="section-content" style="padding:100px 48px;">
+    <div class="reveal">
+      <span class="section-eyebrow">Guest Stories</span>
+      <h2 class="section-title">What Our <em>Guests</em> Say</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal-card">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <div class="review-text">"The view is amazing — you get to see the sun set and have a look at the sky while having your drink."</div>
+        <div class="review-author">Esther Matendechere</div>
+        <div class="review-role">Local Guide · 3 months ago</div>
+      </div>
+      <div class="review-card reveal-card" style="transition-delay:0.1s">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <div class="review-text">"A well hidden gem that values customer privacy."</div>
+        <div class="review-author">Purity Nyaboke</div>
+        <div class="review-role">Verified Guest · 2 months ago</div>
+      </div>
+      <div class="review-card reveal-card" style="transition-delay:0.2s">
+        <div class="review-stars" aria-label="4 stars">★★★★☆</div>
+        <div class="review-text">"A good place to chill. Great atmosphere and the bar is cool."</div>
+        <div class="review-author">Emmtrue</div>
+        <div class="review-role">Local Guide · 1 year ago</div>
+      </div>
+    </div>
+    <div class="review-rating-bar reveal">
+      <div class="rating-big">4.4</div>
+      <div class="rating-info">
+        <div class="rating-label">Overall guest rating on Google</div>
+        <div class="rating-stars">★★★★☆</div>
+        <div class="rating-count">Based on 8 reviews</div>
+      </div>
+      <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-outline">Leave a Review</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ABOUT ======= -->
+<section id="about-section" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:var(--deep);"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(201,168,76,0.04) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="section-content" style="position:relative;z-index:2;padding:120px 80px;">
+    <div class="about-inner">
+      <div class="about-img-col reveal-card">
+        <img class="about-main-img" src="about-background.jpg" alt="Amila Suites team at the entrance" loading="lazy">
+        <div class="about-accent-box">
+          <span class="about-accent-num">4.4</span>
+          <span class="about-accent-lbl">Google Rating</span>
+        </div>
+      </div>
+      <div class="reveal" style="padding-left:0;">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title">Bold. Serene.<br><em>Unapologetically</em> Nairobi.</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Amila Suites and Lounge was born from a simple belief: that Nairobi deserved a space that felt both bold and calm. A place where the city's energy is visible from a terrace but cannot find its way inside.</p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-muted);margin-top:20px;line-height:1.9;">We sit on Eastern Bypass — close enough to everything, far enough from the noise. Our suites are designed for guests who know the difference between a room and a sanctuary.</p>
+        <div class="about-stats">
+          <div>
+            <div class="about-stat-num">8+</div>
+            <div class="about-stat-lbl">Google Reviews</div>
+          </div>
+          <div>
+            <div class="about-stat-num">4.4★</div>
+            <div class="about-stat-lbl">Average Rating</div>
+          </div>
+          <div>
+            <div class="about-stat-num">100%</div>
+            <div class="about-stat-lbl">Privacy Guaranteed</div>
+          </div>
+        </div>
+        <div style="margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;">
+          <button class="btn-gold" onclick="openBookingModal()">Book a Suite</button>
+          <a href="https://wa.me/254722339965" target="_blank" rel="noopener" class="btn-outline">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= MAP ======= -->
+<section id="map-section">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:var(--dark);"></div>
+  <div class="section-content" style="padding:80px 48px;position:relative;z-index:2;">
+    <div class="map-inner">
+      <div>
+        <span class="section-eyebrow">Find Us</span>
+        <h2 class="section-title" style="font-size:clamp(32px,4vw,52px);">Come <em>Visit</em></h2>
+        <div class="divider"></div>
+        <div class="map-info-item">
+          <div class="map-info-label">Address</div>
+          <div class="map-info-val">Eastern Bypass, Nairobi, Kenya</div>
+          <div class="map-info-val" style="font-size:12px;color:var(--text-muted);margin-top:2px;">Q272+4F Nairobi</div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">Phone</div>
+          <div class="map-info-val"><a href="tel:+254722339965">0722 339 965</a></div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">WhatsApp</div>
+          <div class="map-info-val"><a href="https://wa.me/254722339965" target="_blank" rel="noopener">0722 339 965</a></div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">Hours</div>
+          <div class="map-info-val">Open Daily</div>
+          <div class="map-info-val" style="font-size:12px;color:var(--text-muted);">Contact us for current hours</div>
+        </div>
+        <a href="https://maps.google.com/?q=Eastern+Bypass+Nairobi+Amila+Suites" target="_blank" rel="noopener" class="btn-gold" style="margin-top:16px;display:inline-block;">Get Directions</a>
+      </div>
+      <div class="map-container">
+        <!-- 
+          GOOGLE MAPS SETUP:
+          1. Get a Maps Embed API key at console.cloud.google.com
+          2. Replace the map-placeholder div below with:
+          <iframe class="map-iframe" 
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Eastern+Bypass+Nairobi+Kenya&zoom=15&maptype=roadmap"
+            allowfullscreen loading="lazy"
+            title="Amila Suites and Lounge location map">
+          </iframe>
+        -->
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon" aria-hidden="true">◈</div>
+          <div class="map-placeholder-text">
+            Eastern Bypass, Nairobi<br>
+            <span style="font-size:11px;margin-top:4px;display:block;">Q272+4F Nairobi</span>
+          </div>
+          <a href="https://maps.google.com/?q=Q272+4F+Nairobi" target="_blank" rel="noopener" class="map-placeholder-link">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Amila Suites & Lounge</div>
+      <div class="footer-tagline">A serene, bold escape in Nairobi. Where the sunset finds you first.</div>
+      <div style="margin-top:28px;display:flex;gap:16px;">
+        <a href="https://wa.me/254722339965" target="_blank" rel="noopener" aria-label="WhatsApp" style="width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="#rooms-section">Our Suites</a></li>
+        <li><a href="#menu-section">Restaurant Menu</a></li>
+        <li><a href="#services-section">Amenities</a></li>
+        <li><a href="#gallery-section">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Offers</div>
+      <ul class="footer-links">
+        <li><a href="#specials-section">Daily Specials</a></li>
+        <li><a href="#countdown-section">Happy Hour</a></li>
+        <li><a href="#" onclick="openBookingModal()">Book a Suite</a></li>
+        <li><a href="https://wa.me/254722339965" target="_blank" rel="noopener">Events & Meetings</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+254722339965">0722 339 965</a></li>
+        <li><a href="https://wa.me/254722339965" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="#map-section">Eastern Bypass, Nairobi</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Amila Suites and Lounge. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+      <a href="#cookie-bar">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ======= FLOATING BUTTONS ======= -->
+<a href="https://wa.me/254722339965?text=Hello!%20I%20would%20like%20to%20enquire%20about%20Amila%20Suites%20and%20Lounge."
+   id="whatsapp-btn"
+   target="_blank"
+   rel="noopener"
+   aria-label="Contact us on WhatsApp"
+   title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<button id="ai-receptionist-btn" aria-label="Chat with Amila AI Receptionist" title="AI Receptionist">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+  </svg>
+</button>
+
+<div id="cart-btn-float" class="cart-btn" onclick="toggleCart()" role="button" aria-label="Open order cart" style="pointer-events:auto!important;bottom:220px;">
+  <span aria-hidden="true">🛒</span>
+  <span class="cart-count" id="cart-count-float">0</span>
+</div>
+
+<!-- ======= AI RECEPTIONIST PANEL ======= -->
+<div id="ai-panel" role="dialog" aria-label="Amila AI Receptionist" aria-modal="true">
+  <div class="ai-header">
+    <div class="ai-avatar" aria-hidden="true">A</div>
+    <div class="ai-info">
+      <div class="ai-name">Amila</div>
+      <div class="ai-status">● Online — AI Receptionist</div>
+    </div>
+    <div class="ai-lang-toggle">
+      <button class="ai-lang-btn active" id="lang-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
+      <button class="ai-lang-btn" id="lang-sw" onclick="setLang('sw')" aria-label="Switch to Swahili" aria-pressed="false">SW</button>
+    </div>
+    <button class="ai-close" onclick="toggleAI()" aria-label="Close chat">✕</button>
+  </div>
+  <div class="ai-messages" id="ai-messages" role="log" aria-label="Chat messages" aria-live="polite"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-input-row">
+    <input class="ai-input" id="ai-input" type="text" placeholder="Type a message..." aria-label="Message input" maxlength="500">
+    <button class="ai-send" onclick="sendAIMessage()" aria-label="Send message">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ======= CART PANEL ======= -->
+<div id="cart-panel" role="dialog" aria-label="Your order" aria-modal="true">
+  <div class="cart-header">
+    <div class="cart-title">Your Order</div>
+    <button class="cart-close" onclick="toggleCart()" aria-label="Close cart" style="pointer-events:auto!important;">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-nudge" id="cart-nudge"></div>
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cart-total">KES 0</span>
+    </div>
+    <button class="cart-confirm" onclick="confirmOrder()" style="pointer-events:auto!important;">
+      Confirm Order via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- ======= BOOKING MODAL ======= -->
+<div id="booking-modal" role="dialog" aria-label="Reserve a suite" aria-modal="true">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeBookingModal()" aria-label="Close booking form">✕</button>
+    <div id="booking-form-content">
+      <div class="modal-title">Reserve Your Suite</div>
+      <div class="modal-subtitle">Your reservation will be held. Our team confirms within 2 hours.</div>
+      <form id="booking-form" onsubmit="submitBooking(event)" novalidate>
+        <input type="text" name="honeypot" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-group">
+          <label class="form-label" for="b-name">Full Name *</label>
+          <input class="form-input" type="text" id="b-name" name="name" required placeholder="Your name" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="b-phone">Phone / WhatsApp *</label>
+          <input class="form-input" type="tel" id="b-phone" name="phone" required placeholder="+254..." maxlength="20">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="b-checkin">Check-in *</label>
+            <input class="form-input" type="date" id="b-checkin" name="checkin" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="b-checkout">Check-out *</label>
+            <input class="form-input" type="date" id="b-checkout" name="checkout" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="b-guests">Guests</label>
+            <select class="form-select" id="b-guests" name="guests">
+              <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+              <option>4 Guests</option><option>5+ Guests</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="b-room">Room Type</label>
+            <select class="form-select" id="b-room" name="roomType">
+              <option>Deluxe Suite</option><option>Executive Suite</option>
+              <option>Presidential Suite</option><option>Standard Room</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="b-notes">Special Requests</label>
+          <textarea class="form-textarea" id="b-notes" name="notes" placeholder="Any special requests or notes..." maxlength="500"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Confirm My Reservation</button>
+      </form>
+    </div>
+    <div class="form-success" id="booking-success">
+      <div class="form-success-icon" aria-hidden="true">✓</div>
+      <div class="form-success-title" id="booking-success-title">Reservation Received!</div>
+      <div class="form-success-text">Your reservation is being held for you. Our team will confirm within 2 hours.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= COOKIE CONSENT ======= -->
+<div id="cookie-bar" role="banner" aria-label="Cookie consent">
+  <p>We use cookies to improve your experience. By using our site, you agree to our <a href="#privacy">Privacy Policy</a> (Kenya Data Protection Act 2019 compliant).</p>
+  <button class="cookie-btn" onclick="acceptCookies()" aria-label="Accept cookies">Accept</button>
+</div>
+
+<!-- ======= JAVASCRIPT ======= -->
+<script>
+// =============================================
+// EDIT HERE — ALL CHANGEABLE CONTENT
+// =============================================
+const SITE_DATA = {
+  business: {
+    name: "Amila Suites and Lounge",
+    phone: "0722 339 965",
+    whatsapp: "254722339965",
+    address: "Eastern Bypass, Nairobi",
+    hours: "Open Daily — Contact us for current hours",
+    email: ""
+  },
+  countdown: {
+    countdownTo: "23:59" // End of day today
+  },
+  cart: {
+    nudgeThreshold: 2000, // KES threshold to show nudge
+    nudgeMessage: "Add just KES {X} more to qualify for free delivery!"
+  },
+  scarcity: {
+    suitesLeft: 3,
+    tablesLeft: 3,
+    popularOrders: 12
+  },
+  ticker: [
+    "Full Breakfast ordered — 2 minutes ago",
+    "Table for 2 booked — just now",
+    "Steak ordered — 5 minutes ago",
+    "Sunset Suite Package booked — 12 minutes ago",
+    "Cappuccino ordered — 1 minute ago",
+    "Eggs Benedict ordered — 3 minutes ago",
+    "Executive Suite reserved — just now",
+    "Tiramisu ordered — 4 minutes ago",
+    "Happy Hour cocktails ordered — 7 minutes ago",
+    "Dinner for Two booked — 15 minutes ago"
+  ],
+  gallery: {
+    captions: [
+      "A place where Nairobi breathes",
+      "Where every meal is a ceremony",
+      "The Eastern Bypass escape you've been looking for",
+      "Sleep well. Wake up to Nairobi."
+    ]
+  },
+  menu: [
+    {
+      category: "Breakfast",
+      items: [
+        { name: "Full Breakfast", price: 850, img: "full-breakfast.jpg" },
+        { name: "Eggs Benedict", price: 750, img: "eggs-benedict.jpg" },
+        { name: "Pancakes", price: 600, img: "pancakes.jpg" },
+        { name: "Waffles", price: 650, img: "waffles.jpg" },
+        { name: "Granola Bowl", price: 500, img: "granola-bowl.jpg" },
+        { name: "Avocado Toast", price: 650, img: "avocado-toast.jpg" },
+        { name: "French Toast", price: 600, img: "french-toast.jpg" },
+        { name: "Omelette", price: 700, img: "omelette.jpg" },
+        { name: "Acai Bowl", price: 700, img: "acai-bowl.jpg" }
+      ]
+    },
+    {
+      category: "Mains",
+      items: [
+        { name: "Grilled Chicken", price: 1200, img: "grilled-chicken.jpg" },
+        { name: "Steak", price: 2500, img: "steak.jpg" },
+        { name: "Pasta", price: 1000, img: "pasta.jpg" },
+        { name: "Burger", price: 1100, img: "burger.jpg" },
+        { name: "Fish and Chips", price: 1200, img: "fish-and-chips.jpg" },
+        { name: "Caesar Salad", price: 800, img: "caesar-salad.jpg" },
+        { name: "Club Sandwich", price: 900, img: "club-sandwich.jpg" },
+        { name: "Pizza", price: 1300, img: "pizza.jpg" },
+        { name: "Soup", price: 600, img: "soup.jpg" }
+      ]
+    },
+    {
+      category: "Drinks",
+      items: [
+        { name: "Espresso", price: 300, img: "espresso.jpg" },
+        { name: "Cappuccino", price: 400, img: "cappuccino.jpg" },
+        { name: "Latte", price: 420, img: "latte.jpg" },
+        { name: "Fresh Juice", price: 500, img: "fresh-juice.jpg" },
+        { name: "Smoothie", price: 600, img: "smoothie.jpg" },
+        { name: "Sparkling Water", price: 300, img: "sparkling-water.jpg" },
+        { name: "Iced Tea", price: 350, img: "iced-tea.jpg" },
+        { name: "Milkshake", price: 600, img: "milkshake.jpg" },
+        { name: "Mocha", price: 450, img: "mocha.jpg" }
+      ]
+    },
+    {
+      category: "Desserts",
+      items: [
+        { name: "Cheesecake", price: 700, img: "cheesecake.jpg" },
+        { name: "Chocolate Cake", price: 650, img: "chocolate-cake.jpg" },
+        { name: "Tiramisu", price: 750, img: "tiramisu.jpg" },
+        { name: "Ice Cream", price: 500, img: "ice-cream.jpg" },
+        { name: "Brownie", price: 550, img: "brownie.jpg" },
+        { name: "Fruit Tart", price: 650, img: "fruit-tart.jpg" },
+        { name: "Waffle Sundae", price: 750, img: "waffle-sundae.jpg" },
+        { name: "Carrot Cake", price: 600, img: "carrot-cake.jpg" },
+        { name: "Banana Bread", price: 450, img: "banana-bread.jpg" }
+      ]
+    }
+  ]
+};
+
+// =============================================
+// RECEPTIONIST KNOWLEDGE — EDIT THESE DETAILS
+// =============================================
+const RECEPTIONIST = {
+  name: "Amila",
+  phone: "0722 339 965",
+  whatsapp: "254722339965",
+  hours: "Open Daily",
+  location: "Eastern Bypass, Nairobi",
+  services: ["Sunset Lounge & Bar", "Curated Suites", "Restaurant & Dining", "Events & Meetings", "Pool Table & Games"]
+};
+
+// =============================================
+// STATE
+// =============================================
+let cart = [];
+let currentLang = 'en';
+let userName = null;
+let aiOpen = false;
+let cartOpen = false;
+let currentGallerySlide = 0;
+let galleryTotal = 4;
+let galleryInterval = null;
+let tickerIdx = 0;
+let activeMenuTab = 0;
+
+// =============================================
+// NAV
+// =============================================
+const nav = document.getElementById('main-nav');
+const heroAHeight = () => document.getElementById('hero-a').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > heroAHeight() * 0.5) {
+    nav.classList.add('solid');
+  } else {
+    nav.classList.remove('solid');
+  }
+}, { passive: true });
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  const menu = document.getElementById('mobile-menu');
+  const isOpen = menu.classList.toggle('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', isOpen);
+});
+
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+}
+
+document.getElementById('nav-book-trigger').addEventListener('click', (e) => {
+  e.preventDefault();
+  openBookingModal();
+});
+
+// =============================================
+// PARALLAX & MOUSE TRACKING (desktop)
+// =============================================
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+if (window.innerWidth >= 768) {
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 12;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 12;
+  });
+
+  function lerpMouse() {
+    currentX += (mouseX - currentX) * 0.06;
+    currentY += (mouseY - currentY) * 0.06;
+    const el = document.querySelector('#hero-a .hero-bg-fallback');
+    if (el) el.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.05)`;
+    requestAnimationFrame(lerpMouse);
+  }
+  lerpMouse();
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const bgA = document.querySelector('#hero-a .hero-bg-fallback');
+    if (bgA) bgA.style.transform = `translateY(${scrolled * 0.4}px) scale(1.05)`;
+  }, { passive: true });
+}
+
+// =============================================
+// SCROLL REVEAL
+// =============================================
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 0);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal-card').forEach(el => cardObserver.observe(el));
+
+// =============================================
+// MENU RENDERING
+// =============================================
+function renderMenu() {
+  const tabsEl = document.getElementById('menu-tabs');
+  const wrapper = document.getElementById('menu-categories-wrapper');
+
+  SITE_DATA.menu.forEach((cat, idx) => {
+    const tab = document.createElement('button');
+    tab.className = 'menu-tab' + (idx === 0 ? ' active' : '');
+    tab.textContent = cat.category;
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-selected', idx === 0);
+    tab.onclick = () => switchMenuTab(idx);
+    tabsEl.appendChild(tab);
+
+    const catEl = document.createElement('div');
+    catEl.className = 'menu-row-wrapper';
+    catEl.id = `menu-cat-${idx}`;
+    catEl.style.display = idx === 0 ? 'block' : 'none';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'menu-row-nav prev';
+    prevBtn.setAttribute('aria-label', `Scroll ${cat.category} left`);
+    prevBtn.innerHTML = '<span class="chevron-line chevron-left"></span>';
+    prevBtn.style.pointerEvents = 'auto';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'menu-row-nav next';
+    nextBtn.setAttribute('aria-label', `Scroll ${cat.category} right`);
+    nextBtn.innerHTML = '<span class="chevron-line chevron-right"></span>';
+    nextBtn.style.pointerEvents = 'auto';
+
+    const row = document.createElement('div');
+    row.className = 'menu-row';
+    row.id = `menu-row-${idx}`;
+
+    cat.items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'menu-card reveal-card';
+      card.innerHTML = `
+        <img class="menu-card-img" src="${item.img}" alt="${item.name}" loading="lazy" width="220" height="150"
+          onerror="this.style.display='none'">
+        <div class="menu-card-body">
+          <div class="menu-card-name">${item.name}</div>
+          <div class="menu-card-price">KES ${item.price.toLocaleString()}</div>
+          <button class="menu-card-add" onclick="addToCart('${item.name}',${item.price})" style="pointer-events:auto!important;">
+            Add to Order
+          </button>
+        </div>`;
+      row.appendChild(card);
+    });
+
+    prevBtn.onclick = () => { row.scrollBy({ left: -240, behavior: 'smooth' }); };
+    nextBtn.onclick = () => { row.scrollBy({ left: 240, behavior: 'smooth' }); };
+
+    catEl.appendChild(prevBtn);
+    catEl.appendChild(row);
+    catEl.appendChild(nextBtn);
+    wrapper.appendChild(catEl);
+
+    row.querySelectorAll('.reveal-card').forEach(el => cardObserver.observe(el));
+  });
+}
+
+function switchMenuTab(idx) {
+  activeMenuTab = idx;
+  document.querySelectorAll('.menu-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+    t.setAttribute('aria-selected', i === idx);
+  });
+  SITE_DATA.menu.forEach((_, i) => {
+    const el = document.getElementById(`menu-cat-${i}`);
+    if (el) el.style.display = i === idx ? 'block' : 'none';
+  });
+}
+
+renderMenu();
+
+// =============================================
+// CART
+// =============================================
+function addToCart(name, price) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  updateCartUI();
+  if (!cartOpen) {
+    // pulse feedback
+    const btn = document.getElementById('cart-open-btn');
+    btn.style.background = 'var(--gold-light)';
+    setTimeout(() => btn.style.background = '', 300);
+  }
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+
+  document.getElementById('cart-count-header').textContent = count;
+  document.getElementById('cart-total').textContent = `KES ${total.toLocaleString()}`;
+
+  const countFloat = document.getElementById('cart-count-float');
+  countFloat.textContent = count;
+  countFloat.classList.toggle('show', count > 0);
+
+  const itemsEl = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty">Your order is empty.<br>Add items from the menu.</div>';
+  } else {
+    itemsEl.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div>
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">KES ${(item.price * item.qty).toLocaleString()}</div>
+        </div>
+        <div class="cart-item-controls">
+          <button class="cart-qty-btn" onclick="changeQty('${item.name}',-1)" aria-label="Decrease quantity" style="pointer-events:auto!important;">−</button>
+          <span style="font-size:14px;min-width:20px;text-align:center;">${item.qty}</span>
+          <button class="cart-qty-btn" onclick="changeQty('${item.name}',1)" aria-label="Increase quantity" style="pointer-events:auto!important;">+</button>
+        </div>
+      </div>`).join('');
+  }
+
+  const nudgeEl = document.getElementById('cart-nudge');
+  const threshold = SITE_DATA.cart.nudgeThreshold;
+  if (total > 0 && total < threshold) {
+    nudgeEl.textContent = SITE_DATA.cart.nudgeMessage.replace('{X}', (threshold - total).toLocaleString());
+  } else {
+    nudgeEl.textContent = '';
+  }
+}
+
+function changeQty(name, delta) {
+  const item = cart.find(i => i.name === name);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.name !== name);
+  updateCartUI();
+}
+
+function toggleCart() {
+  cartOpen = !cartOpen;
+  document.getElementById('cart-panel').classList.toggle('open', cartOpen);
+}
+
+function confirmOrder() {
+  if (cart.length === 0) { alert('Please add items to your order first.'); return; }
+  const lines = cart.map(i => `• ${i.name} x${i.qty} — KES ${(i.price*i.qty).toLocaleString()}`).join('%0A');
+  const total = cart.reduce((s,i) => s + i.price*i.qty, 0);
+  const msg = `Hello Amila Suites! I'd like to place an order:%0A%0A${lines}%0A%0ATotal: KES ${total.toLocaleString()}%0A%0APlease confirm my order. Thank you!`;
+  window.open(`https://wa.me/${SITE_DATA.business.whatsapp}?text=${msg}`, '_blank', 'noopener');
+}
+
+updateCartUI();
+
+// =============================================
+// TICKER
+// =============================================
+function runTicker() {
+  const el = document.getElementById('ticker-text');
+  const msgs = SITE_DATA.ticker;
+  setInterval(() => {
+    el.classList.remove('active');
+    setTimeout(() => {
+      tickerIdx = (tickerIdx + 1) % msgs.length;
+      el.textContent = msgs[tickerIdx];
+      el.classList.add('active');
+    }, 500);
+  }, 4000);
+}
+runTicker();
+
+// =============================================
+// COUNTDOWN
+// =============================================
+function runCountdown() {
+  const [h, m] = SITE_DATA.countdown.countdownTo.split(':').map(Number);
+  function update() {
+    const now = new Date();
+    const target = new Date(now);
+    target.setHours(h, m, 0, 0);
+    if (target <= now) {
+      document.querySelector('.countdown-timer').style.display = 'none';
+      document.getElementById('countdown-ended').style.display = 'block';
+      return;
+    }
+    const diff = target - now;
+    const hrs = Math.floor(diff / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-hours').textContent = String(hrs).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+  }
+  update();
+  setInterval(update, 1000);
+}
+runCountdown();
+
+// =============================================
+// GALLERY
+// =============================================
+function initGallery() {
+  const dotsEl = document.getElementById('gallery-dots');
+  const captions = SITE_DATA.gallery.captions;
+
+  for (let i = 0; i < galleryTotal; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Gallery image ${i+1}`);
+    dot.onclick = () => goToSlide(i);
+    dotsEl.appendChild(dot);
+  }
+
+  function goToSlide(idx) {
+    document.getElementById(`slide-${currentGallerySlide}`).classList.remove('active');
+    document.querySelectorAll('.gallery-dot')[currentGallerySlide].classList.remove('active');
+    currentGallerySlide = (idx + galleryTotal) % galleryTotal;
+    document.getElementById(`slide-${currentGallerySlide}`).classList.add('active');
+    document.querySelectorAll('.gallery-dot')[currentGallerySlide].classList.add('active');
+    const cap = document.getElementById('gallery-caption-text');
+    if (captions[currentGallerySlide]) cap.textContent = captions[currentGallerySlide];
+  }
+
+  document.getElementById('gallery-prev').onclick = () => { goToSlide(currentGallerySlide - 1); resetInterval(); };
+  document.getElementById('gallery-next').onclick = () => { goToSlide(currentGallerySlide + 1); resetInterval(); };
+
+  function resetInterval() {
+    clearInterval(galleryInterval);
+    galleryInterval = setInterval(() => goToSlide(currentGallerySlide + 1), 3000);
+  }
+  galleryInterval = setInterval(() => goToSlide(currentGallerySlide + 1), 3000);
+
+  // Touch swipe
+  let touchStartX = 0;
+  const track = document.getElementById('gallery-track');
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      goToSlide(diff > 0 ? currentGallerySlide + 1 : currentGallerySlide - 1);
+      resetInterval();
+    }
+  }, { passive: true });
+}
+initGallery();
+
+// =============================================
+// SCROLLYTELLING
+// =============================================
+// STORY SCROLL — image switching
+// =============================================
+(function() {
+  const paragraphs = document.querySelectorAll('.story-paragraph');
+  const storyImgs  = document.querySelectorAll('.story-img');
+  if (!paragraphs.length || !storyImgs.length) return;
+
+  function getActiveIdx() {
+    let best = 0;
+    let bestScore = -Infinity;
+    paragraphs.forEach((p, i) => {
+      const rect = p.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const score = -Math.abs(center - window.innerHeight / 2);
+      if (score > bestScore) { bestScore = score; best = i; }
+    });
+    return best;
+  }
+
+  function update() {
+    if (window.innerWidth < 768) return;
+    const idx = getActiveIdx();
+    paragraphs.forEach((p, i) => p.classList.toggle('active', i === idx));
+    storyImgs.forEach((img, i) => img.classList.toggle('active', i === idx));
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
+
+// =============================================
+// IMMERSIVE SERVICE SELECTOR
+// =============================================
+function selectService(idx) {
+  document.querySelectorAll('.service-item').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.services-bg-img').forEach((img, i) => {
+    img.classList.toggle('active', i === idx);
+  });
+}
+
+// =============================================
+// BOOKING MODAL
+// =============================================
+function openBookingModal() {
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBookingModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('booking-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('booking-modal')) closeBookingModal();
+});
+
+function sanitize(str) {
+  return String(str).replace(/[<>"'&]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'}[c]));
+}
+
+function submitBooking(e) {
+  e.preventDefault();
+  const form = e.target;
+  const honeypot = form.querySelector('[name=honeypot]').value;
+  if (honeypot) return; // bot
+
+  const name = sanitize(form.querySelector('#b-name').value.trim());
+  const phone = sanitize(form.querySelector('#b-phone').value.trim());
+  const checkin = sanitize(form.querySelector('#b-checkin').value);
+  const checkout = sanitize(form.querySelector('#b-checkout').value);
+  const guests = sanitize(form.querySelector('#b-guests').value);
+  const roomType = sanitize(form.querySelector('#b-room').value);
+  const notes = sanitize(form.querySelector('#b-notes').value.trim());
+
+  if (!name || !phone || !checkin || !checkout) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const msg = `Hello! I'd like to book a suite at Amila Suites and Lounge.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ACheck-in: ${checkin}%0ACheck-out: ${checkout}%0AGuests: ${guests}%0ARoom: ${roomType}%0ANotes: ${encodeURIComponent(notes) || 'None'}%0A%0APlease confirm my reservation. Thank you!`;
+
+  window.open(`https://wa.me/${SITE_DATA.business.whatsapp}?text=${msg}`, '_blank', 'noopener');
+
+  document.getElementById('booking-form-content').style.display = 'none';
+  const success = document.getElementById('booking-success');
+  success.style.display = 'block';
+  document.getElementById('booking-success-title').textContent = `Your reservation is being held, ${name}!`;
+}
+
+function submitQuickBooking() {
+  openBookingModal();
+}
+
+// =============================================
+// AI RECEPTIONIST
+// =============================================
+function toggleAI() {
+  aiOpen = !aiOpen;
+  document.getElementById('ai-panel').classList.toggle('open', aiOpen);
+  if (aiOpen && document.getElementById('ai-messages').children.length === 0) {
+    setTimeout(() => addBotMessage(getBotGreeting()), 400);
+    showQuickReplies();
+  }
+}
+
+document.getElementById('ai-receptionist-btn').addEventListener('click', toggleAI);
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  document.getElementById('lang-sw').classList.toggle('active', lang === 'sw');
+  document.getElementById('lang-en').setAttribute('aria-pressed', lang === 'en');
+  document.getElementById('lang-sw').setAttribute('aria-pressed', lang === 'sw');
+}
+
+function getBotGreeting() {
+  const name = userName ? `, ${userName}` : '';
+  if (currentLang === 'sw') return `Habari${name}! Karibu sana Amila Suites and Lounge. Mimi ni Amila, msaidizi wako. Ninaweza kukusaidia vipi?`;
+  return `Hello${name}! Welcome to Amila Suites and Lounge. I'm Amila, your AI receptionist. How can I help you today?`;
+}
+
+function addBotMessage(text) {
+  const msgs = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg bot';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg user';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showQuickReplies() {
+  const qr = document.getElementById('ai-quick-replies');
+  const replies = currentLang === 'sw'
+    ? ['Masaa ya kufungua', 'Mahali mlipo', 'Huduma', 'Bei', 'Kuweka nafasi', 'Mawasiliano']
+    : ['Opening hours', 'Location', 'Services', 'Pricing', 'Book a suite', 'Contact us'];
+  qr.innerHTML = replies.map(r => `<button class="ai-quick" onclick="handleQuick('${r}')" style="pointer-events:auto!important;">${r}</button>`).join('');
+}
+
+function handleQuick(text) {
+  addUserMessage(text);
+  document.getElementById('ai-quick-replies').innerHTML = '';
+  setTimeout(() => {
+    const response = getBotResponse(text.toLowerCase());
+    addBotMessage(response);
+    showQuickReplies();
+  }, 500);
+}
+
+function sendAIMessage() {
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addUserMessage(text);
+  document.getElementById('ai-quick-replies').innerHTML = '';
+
+  // Extract name
+  const nameMatch = text.match(/(?:my name is|i am|i'm|call me|ni mimi|jina langu ni)\s+([A-Za-z]+)/i);
+  if (nameMatch) userName = nameMatch[1];
+
+  setTimeout(() => {
+    const response = getBotResponse(text.toLowerCase());
+    addBotMessage(response);
+    showQuickReplies();
+  }, 600);
+}
+
+document.getElementById('ai-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendAIMessage();
+});
+
+function getBotResponse(text) {
+  const n = userName ? `, ${userName}` : '';
+  const sw = currentLang === 'sw';
+
+  // Greetings
+  if (/hello|hi|hey|habari|jambo|hujambo|karibu|sasa|mambo/.test(text)) {
+    return sw ? `Habari${n}! Karibu sana. Ninaweza kukusaidia vipi?` : `Hello${n}! Great to hear from you. How can I help?`;
+  }
+  // Hours
+  if (/hour|open|clos|saa|fungua|kufungua|wakati/.test(text)) {
+    return sw ? `Tunafungua ${RECEPTIONIST.hours}.` : `We are ${RECEPTIONIST.hours}. Feel free to WhatsApp us at ${RECEPTIONIST.phone} for the latest schedule.`;
+  }
+  // Location
+  if (/where|location|address|directions|mahali|anwani|njia|bypass/.test(text)) {
+    return sw ? `Unaweza kutupata ${RECEPTIONIST.location}. Tuma WhatsApp ${RECEPTIONIST.phone} kwa maelekezo zaidi.` : `You can find us at ${RECEPTIONIST.location}. We're on Eastern Bypass, easy to spot. WhatsApp us at ${RECEPTIONIST.phone} for exact directions.`;
+  }
+  // Booking
+  if (/book|reserve|reservation|nafasi|weka|hifadhi|suite|room|chumba/.test(text)) {
+    return sw ? `Kuweka nafasi, tuma WhatsApp ${RECEPTIONIST.phone} au bonyeza kitufe cha "Reserve Your Suite" juu ya ukurasa.` : `To book a suite, WhatsApp us at ${RECEPTIONIST.phone} or tap "Reserve Your Suite" at the top of the page. Our team confirms within 2 hours${n}!`;
+  }
+  // Services
+  if (/service|offer|amenit|feature|huduma|nini|available/.test(text)) {
+    const list = RECEPTIONIST.services.join(', ');
+    return sw ? `Huduma zetu ni: ${list}. Je, ungependa kujua zaidi kuhusu mojawapo?` : `We offer: ${list}. Which one would you like to know more about${n}?`;
+  }
+  // Pricing
+  if (/price|cost|bei|gharama|how much|kiasi|ksh|kes/.test(text)) {
+    return sw ? `Vyumba vyetu vinaanzia KES 7,500 usiku. Chakula kinaanzia KES 300. WhatsApp ${RECEPTIONIST.phone} kwa bei zetu za sasa.` : `Our rooms start from KES 7,500/night. Dining starts from KES 300. WhatsApp us at ${RECEPTIONIST.phone} for current rates and packages${n}.`;
+  }
+  // Contact
+  if (/contact|phone|call|email|whatsapp|simu|piga|wasiliana/.test(text)) {
+    return sw ? `WhatsApp: ${RECEPTIONIST.phone}, Simu: ${RECEPTIONIST.phone}` : `WhatsApp or call us at ${RECEPTIONIST.phone}. We're always happy to help${n}!`;
+  }
+  // Thanks
+  if (/thank|asante|sante|good|great|nice/.test(text)) {
+    return sw ? `Karibu sana${n}! Kuna kitu kingine ninachoweza kukusaidia?` : `You're so welcome${n}! Is there anything else I can help you with?`;
+  }
+  // Goodbye
+  if (/bye|goodbye|kwaheri|see you|later|kwah/.test(text)) {
+    return sw ? `Siku njema${n}! Karibu tena Amila Suites and Lounge. Kwaheri!` : `Have a wonderful day${n}! We hope to welcome you at Amila Suites soon!`;
+  }
+  // Sunset / view / bar
+  if (/sunset|view|lounge|bar|drink|cocktail|jua/.test(text)) {
+    return sw ? `Mtazamo wetu wa jua kuchwa ni mzuri sana! Wageni wetu wanapenda kunywa vinywaji wakiangalia Nairobi. Kaa nasi jioni.` : `Our sunset views are stunning${n}! Guests love watching the Nairobi skyline over cocktails. Join us in the evening — you won't regret it.`;
+  }
+  // Pool / games
+  if (/pool|game|table|billiard/.test(text)) {
+    return sw ? `Tuna meza ya pool kwa burudani. Wasiliana nasi kwa habari zaidi.` : `We have a pool table for entertainment${n}. Contact us at ${RECEPTIONIST.phone} for more details on availability.`;
+  }
+
+  // Unknown
+  return sw ? `Swali zuri${n}! Kwa jibu sahihi zaidi, wasiliana nasi kwenye WhatsApp ${RECEPTIONIST.phone}. Timu yetu itakusaidia haraka.` : `Great question${n}! For the most accurate answer, please WhatsApp us at ${RECEPTIONIST.phone}. Our team will get back to you quickly.`;
+}
+
+// =============================================
+// COOKIE CONSENT
+// =============================================
+function acceptCookies() {
+  document.getElementById('cookie-bar').style.display = 'none';
+  try { localStorage.setItem('cookiesAccepted', '1'); } catch(e) {}
+}
+
+try {
+  if (localStorage.getItem('cookiesAccepted')) {
+    document.getElementById('cookie-bar').style.display = 'none';
+  }
+} catch(e) {}
+
+// =============================================
+// MICRO-INTERACTIONS
+// =============================================
+document.querySelectorAll('.btn-gold, .btn-outline, .form-submit').forEach(btn => {
+  btn.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-2px)'; });
+  btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
+});
+
+// =============================================
+// CLOSE MODALS ON ESC
+// =============================================
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeBookingModal();
+    if (cartOpen) toggleCart();
+    if (aiOpen) toggleAI();
+  }
+});
+
+// =============================================
+// SWIPE FOR MOBILE MENU
+// =============================================
+let touchStartY = 0;
+document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+
+// Ensure all floating elements are above everything
+window.addEventListener('load', () => {
+  ['whatsapp-btn','ai-receptionist-btn','cart-btn-float'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.zIndex = '9999';
+  });
+  document.getElementById('ai-panel').style.zIndex = '9998';
+  document.getElementById('cart-panel').style.zIndex = '9998';
+});
+
+// Booking bar: set min dates
+(function() {
+  const today = new Date().toISOString().split('T')[0];
+  ['checkin','checkout','b-checkin','b-checkout'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.min = today;
+  });
+  const checkin = document.getElementById('checkin');
+  const checkout = document.getElementById('checkout');
+  if (checkin && checkout) {
+    checkin.addEventListener('change', () => { checkout.min = checkin.value; });
+  }
+  const bCheckin = document.getElementById('b-checkin');
+  const bCheckout = document.getElementById('b-checkout');
+  if (bCheckin && bCheckout) {
+    bCheckin.addEventListener('change', () => { bCheckout.min = bCheckin.value; });
+  }
+})();
+
+console.log('%cAmila Suites and Lounge', 'color:#C9A84C;font-size:20px;font-weight:bold;');
+console.log('%cWebsite ready. Update SITE_DATA and RECEPTIONIST objects to customise content.', 'color:#888;');
+</script>
+</body>
+</html>
